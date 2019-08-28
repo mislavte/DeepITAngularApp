@@ -1,0 +1,22 @@
+<h2>Lista država</h2>
+
+<button class="btn btn-primary mt-2 mb-4" routerLink="/drzavaEditNew" routerLinkActive="active">
+  Dodaj
+</button>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Naziv</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let drzava of listaDrzava">
+      <td>{{ drzava.id }}</td>
+      <td>{{ drzava.naziv }}</td>
+      <td>Edit</td>
+    </tr>
+  </tbody>
+</table>

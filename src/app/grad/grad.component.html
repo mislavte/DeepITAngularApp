@@ -1,0 +1,22 @@
+<h2>Lista gradova</h2>
+
+<button class="btn btn-primary mt-2 mb-4" routerLink="/gradEditNew" routerLinkActive="active">
+  Dodaj
+</button>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Naziv</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let grad of listaGradova">
+      <td>{{ grad.id }}</td>
+      <td>{{ grad.naziv }}</td>
+      <td  (click)="openEditNew()">Edit</td>
+    </tr>
+  </tbody>
+</table>
