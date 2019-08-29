@@ -1,23 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Drzava } from './drzava/drzava.model';
 import { of, Observable } from 'rxjs';
+import { BaseService } from './base.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DrzavaService {
+export class DrzavaService extends BaseService<Drzava> {
 
-  constructor() { }
+  constructor(httpClient: HttpClient) {
+    super(httpClient, 'drzava');
+   }
 
-  getAll(): Observable<Drzava[]> {
-    return null;
-  }
-
-  getById(id: number | string): Drzava {
-    id = +id;
-    let d = new Drzava();
-    d.id = 1;
-    d.naziv = 'Hrvatska';
-    return d;
-  }
 }

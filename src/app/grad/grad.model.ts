@@ -1,6 +1,7 @@
 export class Grad {
-  id: number;
-  naziv: string;
-  drzavaID: number;
-  brojStanovnika: number;
+  ID: number;
+  Naziv: string;
+  DrzavaID: number;
+  BrojStanovnika: number;
+  Active: boolean;
 }

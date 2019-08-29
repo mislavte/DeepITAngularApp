@@ -1,23 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Grad } from './grad/grad.model';
 import { Observable } from 'rxjs';
+import { BaseService } from './base.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GradService {
+export class GradService extends BaseService<Grad> {
 
-  constructor() { }
-
-  getAll(): Observable<Grad[]> {
-    return null;
-  }
-
-  getById(id: number | string): Grad {
-    id = +id;
-    let d = new Grad();
-    d.id = 1;
-    d.naziv = 'Hrvatska';
-    return d;
-  }
+  constructor(httpClient: HttpClient) {
+    super(httpClient, 'grad');
+   }
 }

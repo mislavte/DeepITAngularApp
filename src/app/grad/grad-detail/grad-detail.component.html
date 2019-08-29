@@ -1,16 +1,40 @@
 <h2>Grad detail</h2>
 <div class="row">
   <div class="col-sm-4">
-    <form>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
       <div class="md-form">
+        <label for="naziv">Naziv</label>
         <input
+          required
           type="text"
           name="text"
-          [(ngModel)]="grad.naziv"
-          id="form1"
+          [(ngModel)]="grad.Naziv"
+          id="naziv"
           class="form-control"
         />
-        <input type="submit" class="btn btn-primary mt-5">
+
+        <label for="brojStanovnika">Broj stanovnika</label>
+        <input
+          required
+          type="number"
+          name="brojStanovnika"
+          [(ngModel)]="grad.BrojStanovnika"
+          id="brojStanovnika"
+          class="form-control"
+        />
+
+        <label for="drzavaID">Drzava</label>
+        <select
+          name="drzava"
+          [(ngModel)]="grad.DrzavaID"
+          id="drzavaID"
+          class="form-control"
+        >
+          <option *ngFor="let drzava of drzave" [ngValue]="drzava.ID">
+            {{ drzava.Naziv }}
+          </option>
+        </select>
+        <input type="submit" class="btn btn-primary mt-5" />
       </div>
     </form>
   </div>

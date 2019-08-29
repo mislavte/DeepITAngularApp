@@ -2,7 +2,7 @@ import { DrzavaService } from './../drzava.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Drzava } from './drzava.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-drzava',
@@ -11,25 +11,28 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DrzavaComponent implements OnInit {
 
-  // listaDrzava: Drzava[];
-
-  listaDrzava = [
-    {id: 1, naziv: 'Hrvatska'},
-    {id: 3, naziv: 'Hrvatska'},
-    {id: 2, naziv: 'Hrvatska'}
-  ];
+  listaDrzava: Drzava[];
 
   constructor(
     private drzavaService: DrzavaService,
-    private route: ActivatedRoute) { }
+    private router: Router) { }
 
   ngOnInit() {
+    this.refreshDrzave();
+  }
 
-    // loadanje država
-    // this.drzavaService.getAll().subscribe(
-    //   drzave => this.listaDrzava = drzave
-    // );
+  delete(id: number) {
+    this.drzavaService.delete(id).subscribe(this.refreshDrzave, this.refreshDrzave);
+  }
 
+  openEditNew(id?: number) {
+    this.router.navigate(['drzavaEditNew/' + id || '']);
+  }
+
+  private refreshDrzave = () => {
+    this.drzavaService.getAll().subscribe(
+      drzave => this.listaDrzava = drzave
+    );
   }
 
 }

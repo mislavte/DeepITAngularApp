@@ -2,7 +2,7 @@ import { GradService } from './../grad.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Grad } from './grad.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-grad',
@@ -11,27 +11,27 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GradComponent implements OnInit {
 
-  // public listaGradova: Grad[];
-
-  listaGradova = [
-    {id: 1, naziv: 'Hrvatska'},
-    {id: 3, naziv: 'Hrvatska'},
-    {id: 2, naziv: 'Hrvatska'}
-  ];
+  public listaGradova: Grad[];
 
   constructor(
     private gradService: GradService,
-    private route: ActivatedRoute) { }
+    private router: Router) { }
 
   ngOnInit() {
-
-    // this.gradService.getAll().subscribe(
-    //   gradovi => this.listaGradova = gradovi
-    // );
+    this.refreshGradovi();
   }
 
-  openEditNew() {
-    debugger;
+  openEditNew(id?: number) {
+    this.router.navigate(['gradEditNew/' + id || '']);
   }
 
+  delete(id: number) {
+    this.gradService.delete(id).subscribe(this.refreshGradovi, this.refreshGradovi);
+  }
+
+  private refreshGradovi = () => {
+    this.gradService.getAll().subscribe(
+      data => this.listaGradova = data
+    );
+  }
 }

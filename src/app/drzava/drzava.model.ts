@@ -1,4 +1,5 @@
 export class Drzava {
-  id: number;
-  naziv: string;
+  ID: number;
+  Naziv: string;
+  Active: boolean;
 }

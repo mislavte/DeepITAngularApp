@@ -10,13 +10,15 @@
       <th scope="col">#</th>
       <th scope="col">Naziv</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let grad of listaGradova">
-      <td>{{ grad.id }}</td>
-      <td>{{ grad.naziv }}</td>
-      <td  (click)="openEditNew()">Edit</td>
+      <td>{{ grad.ID }}</td>
+      <td>{{ grad.Naziv }}</td>
+      <td  (click)="openEditNew(grad?.ID)">Edit</td>
+      <td  (click)="delete(grad?.ID)">Delete</td>
     </tr>
   </tbody>
 </table>
